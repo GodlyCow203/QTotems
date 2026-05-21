@@ -93,7 +93,7 @@ public class QTotemRegistry {
 
     }
 
-    public static void handleEffectChange(Player player){
+    public static void handleEffectClear(Player player){
         if(!activePlayerEquips.containsKey(player.getUniqueId())) return;
         activePlayerEquips.remove(player.getUniqueId());
         QTotems.getInstance().getServer().getScheduler().runTaskLater(QTotems.getInstance(),()->{
