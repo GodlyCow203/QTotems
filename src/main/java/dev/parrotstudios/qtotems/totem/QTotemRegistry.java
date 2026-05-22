@@ -35,12 +35,16 @@ public class QTotemRegistry {
 
     public static void clearPastEffects(Player player){
         QTotem active = activePlayerEquips.get(player.getUniqueId());
-
-        if (active != null) {
-
-            active.removeEquipEffects(player);
-        }
         activePlayerEquips.remove(player.getUniqueId());
+        if (active != null) {
+            try{
+                active.removeEquipEffects(player);
+            }
+            catch(Exception e){
+                player.clearActivePotionEffects();
+                e.printStackTrace();
+            }
+        }
     }
 
     public static void handleEquip(Player player, ItemStack stack){
@@ -93,7 +97,7 @@ public class QTotemRegistry {
 
     }
 
-    public static void handleEffectClear(Player player){
+    public static void handleEffectChange(Player player){
         if(!activePlayerEquips.containsKey(player.getUniqueId())) return;
         activePlayerEquips.remove(player.getUniqueId());
         QTotems.getInstance().getServer().getScheduler().runTaskLater(QTotems.getInstance(),()->{
@@ -111,6 +115,8 @@ public class QTotemRegistry {
             activePlayerEquips.put(player.getUniqueId(), qTotem.get());
         },1L);
     }
+
+
 
     public static QTotem getTotem(String totemName){
         return getQTotems().stream().filter(qTotem ->  qTotem.getName().equals(totemName)).findFirst().orElse(null);

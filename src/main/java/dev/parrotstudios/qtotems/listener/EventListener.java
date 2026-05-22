@@ -58,8 +58,8 @@ public class EventListener implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onEffectRemove(EntityPotionEffectEvent event) {
         if (!(event.getEntity() instanceof Player player)) return;
-        if (event.getAction() != EntityPotionEffectEvent.Action.CLEARED) return;
-        QTotemRegistry.handleEffectClear(player);
+        if (event.getAction() != EntityPotionEffectEvent.Action.CLEARED && event.getAction() != EntityPotionEffectEvent.Action.REMOVED) return;
+        QTotemRegistry.handleEffectChange(player);
 
     }
 
