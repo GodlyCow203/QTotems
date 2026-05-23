@@ -1,16 +1,137 @@
 prefix: "<dark_red>[<red><bold>QTotems</bold></red>]</dark_red> "
 
 totems:
-  totem1:
+  # Balanced and themed example totems. Each totem below uses different equip/pop effects.
+  featherfall:
     enabled: true
-    name: "totem1"
+    name: "<gold><bold>Featherfall Totem</bold></gold>"
     lore:
-      - "this is a custom totem"
-      - "use wisely"
+      - "<gold>Slow your fall while equipped</gold>"
+      - "<gray>Light and safe</gray>"
+    material: "TOTEM_OF_UNDYING"
+    amount: 1
     popEffects:
-      - "SLOW_FALLING;1;60"
+      - "SLOW_FALLING;1;120"
+    equipEffects:
+      - "SLOW_FALLING;0"
+
+  berserker:
+    enabled: true
+    name: "<red><bold>Berserker Totem</bold></red>"
+    lore:
+      - "<red>Massive strength on pop</red>"
+      - "<gray>Short-lived but powerful</gray>"
+    material: "TOTEM_OF_UNDYING"
+    amount: 1
+    popEffects:
+      - "STRENGTH;2;60"
+      - "SPEED;1;60"
     equipEffects:
       - "STRENGTH;1"
+
+  sprinter:
+    enabled: true
+    name: "<green>Sprinter Totem</green>"
+    lore:
+      - "<green>Run faster while equipped</green>"
+    material: "TOTEM_OF_UNDYING"
+    amount: 1
+    popEffects:
+      - "SPEED;3;80"
+    equipEffects:
+      - "SPEED;1"
+
+  healer:
+    enabled: true
+    name: "<light_purple>Healer Totem</light_purple>"
+    lore:
+      - "<light_purple>Regenerate health when popped</light_purple>"
+    material: "TOTEM_OF_UNDYING"
+    amount: 1
+    popEffects:
+      - "REGENERATION;3;60"
+      - "ABSORPTION;2;40"
+    equipEffects:
+      - "REGENERATION;0"
+
+  flameguard:
+    enabled: true
+    name: "<gold>Flameguard Totem</gold>"
+    lore:
+      - "<gold>Resist fire and burn damage</gold>"
+    material: "TOTEM_OF_UNDYING"
+    amount: 1
+    popEffects:
+      - "FIRE_RESISTANCE;1;300"
+    equipEffects:
+      - "FIRE_RESISTANCE;0"
+
+  ghost:
+    enabled: true
+    name: "<gray>Ghost Totem</gray>"
+    lore:
+      - "<gray>Turn invisible briefly on pop</gray>"
+    material: "TOTEM_OF_UNDYING"
+    amount: 1
+    popEffects:
+      - "INVISIBILITY;1;80"
+    equipEffects:
+      - "INVISIBILITY;0"
+
+  leaper:
+    enabled: true
+    name: "<yellow>Leaper Totem</yellow>"
+    lore:
+      - "<yellow>Boost jump height while equipped</yellow>"
+    material: "TOTEM_OF_UNDYING"
+    amount: 1
+    popEffects:
+      - "JUMP_BOOST;3;50"
+    equipEffects:
+      - "JUMP_BOOST;1"
+
+  nightseer:
+    enabled: true
+    name: "<aqua>Nightseer Totem</aqua>"
+    lore:
+      - "<aqua>See in the dark when popped</aqua>"
+    material: "TOTEM_OF_UNDYING"
+    amount: 1
+    popEffects:
+      - "NIGHT_VISION;1;300"
+    equipEffects:
+      - "NIGHT_VISION;0"
+
+  bulwark:
+    enabled: true
+    name: "<green><bold>Bulwark Totem</bold></green>"
+    lore:
+      - "<green>Provides resistance and absorb on pop</green>"
+    material: "TOTEM_OF_UNDYING"
+    amount: 1
+    popEffects:
+      - "RESISTANCE;2;200"
+      - "ABSORPTION;3;100"
+    equipEffects:
+      - "RESISTANCE;0"
+
+  god:
+    enabled: true
+    name: "<dark_purple><bold>God Totem</bold></dark_purple>"
+    lore:
+      - "<dark_purple>Extremely powerful. OP. Use with caution.</dark_purple>"
+    material: "TOTEM_OF_UNDYING"
+    amount: 1
+    permission: "qtotems.god" # intended to be restricted: requires code to enforce
+    popEffects:
+      - "STRENGTH;5;400"
+      - "REGENERATION;5;200"
+      - "ABSORPTION;5;200"
+      - "RESISTANCE;5;400"
+      - "SPEED;3;400"
+    equipEffects:
+      - "STRENGTH;2"
+      - "RESISTANCE;1"
 
 messages:
   onlyPlayers: "<red>Only players can use this command!"
