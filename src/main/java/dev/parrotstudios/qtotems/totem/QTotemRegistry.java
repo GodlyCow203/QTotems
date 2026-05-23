@@ -100,22 +100,19 @@ public class QTotemRegistry {
     public static void handleEffectChange(Player player){
         if(!activePlayerEquips.containsKey(player.getUniqueId())) return;
         activePlayerEquips.remove(player.getUniqueId());
-        QTotems.getInstance().getServer().getScheduler().runTaskLater(QTotems.getInstance(),()->{
-            ItemStack stack = player.getInventory().getItemInOffHand();
-            if(!isQTotem(stack)) {
-                return;
-            }
-            Optional<QTotem> qTotem = qTotems.stream().filter(qTotem1 -> {
-                PersistentDataContainer pdc = stack.getItemMeta().getPersistentDataContainer();
-                return pdc.has(qTotem1.getKey(), PersistentDataType.BOOLEAN);
-            }).findFirst();
-            if(qTotem.isEmpty()) return;
-            QTotems.getInstance().getServer().getScheduler().runTaskLater(QTotems.getInstance(),()->
-                    qTotem.get().provideEquipEffects(player),1L);
-            activePlayerEquips.put(player.getUniqueId(), qTotem.get());
-        },1L);
+        ItemStack stack = player.getInventory().getItemInOffHand();
+        if(!isQTotem(stack)) {
+            return;
+        }
+        Optional<QTotem> qTotem = qTotems.stream().filter(qTotem1 -> {
+            PersistentDataContainer pdc = stack.getItemMeta().getPersistentDataContainer();
+            return pdc.has(qTotem1.getKey(), PersistentDataType.BOOLEAN);
+        }).findFirst();
+        if(qTotem.isEmpty()) return;
+        QTotems.getInstance().getServer().getScheduler().runTaskLater(QTotems.getInstance(),()->
+                qTotem.get().provideEquipEffects(player),1L);
+        activePlayerEquips.put(player.getUniqueId(), qTotem.get());
     }
-
 
 
     public static QTotem getTotem(String totemName){
