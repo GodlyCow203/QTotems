@@ -1,137 +1,169 @@
 prefix: "<dark_red>[<red><bold>QTotems</bold></red>]</dark_red> "
 
 totems:
-  # Balanced and themed example totems. Each totem below uses different equip/pop effects.
-  featherfall:
+  crystal:
     enabled: true
-    name: "<gold><bold>Featherfall Totem</bold></gold>"
+    name: "<light_purple><bold>CRYSTAL TOTEM</bold></light_purple>"
     lore:
-      - "<gold>Slow your fall while equipped</gold>"
-      - "<gray>Light and safe</gray>"
+      - "<gray>Custom Totem</gray>"
+      - ""
+      - "<white>This is a custom totem with abilities</white>"
+      - "<white>use it wisely!</white>"
+      - ""
+      - "🚀 <white>Absorption I</white> <gray>[<red>15s</red>]</gray>"
+      - "🛡 <white>Resistance I</white> <gray>[<aqua>12s</aqua>]</gray>"
     material: "TOTEM_OF_UNDYING"
     amount: 1
     popEffects:
-      - "SLOW_FALLING;1;120"
+      - "absorption;0;300"
+      - "resistance;0;240"
     equipEffects:
-      - "SLOW_FALLING;0"
+      - "resistance;0"
 
-  berserker:
+  fire:
     enabled: true
-    name: "<red><bold>Berserker Totem</bold></red>"
+    name: "<red><bold>FIRE TOTEM</bold></red>"
     lore:
-      - "<red>Massive strength on pop</red>"
-      - "<gray>Short-lived but powerful</gray>"
+      - "<gray>Custom Totem</gray>"
+      - ""
+      - "<white>This is a custom totem with abilities</white>"
+      - "<white>use it wisely!</white>"
+      - ""
+      - "🔥 <white>Fire Resistance</white> <gray>[<gold>30s</gold>]</gray>"
+      - "⚔ <white>Strength I</white> <gray>[<red>10s</red>]</gray>"
     material: "TOTEM_OF_UNDYING"
     amount: 1
     popEffects:
-      - "STRENGTH;2;60"
-      - "SPEED;1;60"
+      - "fire_resistance;0;600"
+      - "strength;0;200"
     equipEffects:
-      - "STRENGTH;1"
+      - "fire_resistance;0"
 
-  sprinter:
+  ice:
     enabled: true
-    name: "<green>Sprinter Totem</green>"
+    name: "<aqua><bold>ICE TOTEM</bold></aqua>"
     lore:
-      - "<green>Run faster while equipped</green>"
+      - "<gray>Custom Totem</gray>"
+      - ""
+      - "<white>This is a custom totem with abilities</white>"
+      - "<white>use it wisely!</white>"
+      - ""
+      - "⚡ <white>Speed I</white> <gray>[<aqua>15s</aqua>]</gray>"
+      - "🪶 <white>Slow Falling</white> <gray>[<white>12s</white>]</gray>"
     material: "TOTEM_OF_UNDYING"
     amount: 1
     popEffects:
-      - "SPEED;3;80"
+      - "speed;0;300"
+      - "slow_falling;0;240"
     equipEffects:
-      - "SPEED;1"
+      - "speed;0"
 
-  healer:
+  warrior:
     enabled: true
-    name: "<light_purple>Healer Totem</light_purple>"
+    name: "<gold><bold>WARRIOR TOTEM</bold></gold>"
     lore:
-      - "<light_purple>Regenerate health when popped</light_purple>"
+      - "<gray>Custom Totem</gray>"
+      - ""
+      - "<white>This is a custom totem with abilities</white>"
+      - "<white>use it wisely!</white>"
+      - ""
+      - "⚔ <white>Strength II</white> <gray>[<red>15s</red>]</gray>"
+      - "🚀 <white>Absorption</white> <gray>[<red>15s</red>]</gray>"
+      - "💚 <white>Regeneration</white> <gray>[<light_purple>15s</light_purple>]</gray>"
     material: "TOTEM_OF_UNDYING"
     amount: 1
     popEffects:
-      - "REGENERATION;3;60"
-      - "ABSORPTION;2;40"
+      - "strength;1;300"
+      - "absorption;0;300"
+      - "regeneration;0;300"
     equipEffects:
-      - "REGENERATION;0"
+      - "strength;0"
 
-  flameguard:
+  nature:
     enabled: true
-    name: "<gold>Flameguard Totem</gold>"
+    name: "<green><bold>NATURE TOTEM</bold></green>"
     lore:
-      - "<gold>Resist fire and burn damage</gold>"
+      - "<gray>Custom Totem</gray>"
+      - ""
+      - "<white>This is a custom totem with abilities</white>"
+      - "<white>use it wisely!</white>"
+      - ""
+      - "💚 <white>Regeneration II</white> <gray>[<light_purple>15s</light_purple>]</gray>"
+      - "🍖 <white>Saturation</white> <gray>[<yellow>30s</yellow>]</gray>"
     material: "TOTEM_OF_UNDYING"
     amount: 1
     popEffects:
-      - "FIRE_RESISTANCE;1;300"
+      - "regeneration;1;300"
+      - "saturation;0;600"
     equipEffects:
-      - "FIRE_RESISTANCE;0"
+      - "regeneration;0"
 
-  ghost:
+  time:
     enabled: true
-    name: "<gray>Ghost Totem</gray>"
+    name: "<yellow><bold>TIME TOTEM</bold></yellow>"
     lore:
-      - "<gray>Turn invisible briefly on pop</gray>"
+      - "<gray>Custom Totem</gray>"
+      - ""
+      - "<white>This is a custom totem with abilities</white>"
+      - "<white>use it wisely!</white>"
+      - ""
+      - "⚡ <white>Speed II</white> <gray>[<aqua>20s</aqua>]</gray>"
+      - "⛏ <white>Haste II</white> <gray>[<gold>20s</gold>]</gray>"
+      - "🪶 <white>Slow Falling</white> <gray>[<white>20s</white>]</gray>"
     material: "TOTEM_OF_UNDYING"
     amount: 1
     popEffects:
-      - "INVISIBILITY;1;80"
+      - "speed;1;400"
+      - "haste;1;400"
+      - "slow_falling;0;400"
     equipEffects:
-      - "INVISIBILITY;0"
+      - "haste;0"
 
-  leaper:
+  dragon:
     enabled: true
-    name: "<yellow>Leaper Totem</yellow>"
+    name: "<dark_purple><bold>DRAGON TOTEM</bold></dark_purple>"
     lore:
-      - "<yellow>Boost jump height while equipped</yellow>"
+      - "<gray>Custom Totem</gray>"
+      - ""
+      - "<white>This is a custom totem with abilities</white>"
+      - "<white>use it wisely!</white>"
+      - ""
+      - "🔥 <white>Fire Res</white> <gray>[<gold>30s</gold>]</gray>"
+      - "⚔ <white>Strength II</white> <gray>[<red>30s</red>]</gray>"
+      - "🛡 <white>Resistance</white> <gray>[<aqua>30s</aqua>]</gray>"
+      - "⬆ <white>Levitation</white> <gray>[<light_purple>10s</light_purple>]</gray>"
     material: "TOTEM_OF_UNDYING"
     amount: 1
     popEffects:
-      - "JUMP_BOOST;3;50"
+      - "fire_resistance;0;600"
+      - "strength;1;600"
+      - "resistance;0;600"
+      - "levitation;0;200"
     equipEffects:
-      - "JUMP_BOOST;1"
+      - "fire_resistance;0"
+      - "strength;0"
 
-  nightseer:
+  guardian:
     enabled: true
-    name: "<aqua>Nightseer Totem</aqua>"
+    name: "<dark_aqua><bold>GUARDIAN TOTEM</bold></dark_aqua>"
     lore:
-      - "<aqua>See in the dark when popped</aqua>"
+      - "<gray>Custom Totem</gray>"
+      - ""
+      - "<white>This is a custom totem with abilities</white>"
+      - "<white>use it wisely!</white>"
+      - ""
+      - "🛡 <white>Resistance II</white> <gray>[<aqua>30s</aqua>]</gray>"
+      - "🚀 <white>Absorption II</white> <gray>[<red>30s</red>]</gray>"
+      - "🐬 <white>Dolphin's Grace</white> <gray>[<blue>30s</blue>]</gray>"
     material: "TOTEM_OF_UNDYING"
     amount: 1
     popEffects:
-      - "NIGHT_VISION;1;300"
+      - "resistance;1;600"
+      - "absorption;1;600"
+      - "dolphins_grace;0;600"
     equipEffects:
-      - "NIGHT_VISION;0"
-
-  bulwark:
-    enabled: true
-    name: "<green><bold>Bulwark Totem</bold></green>"
-    lore:
-      - "<green>Provides resistance and absorb on pop</green>"
-    material: "TOTEM_OF_UNDYING"
-    amount: 1
-    popEffects:
-      - "RESISTANCE;2;200"
-      - "ABSORPTION;3;100"
-    equipEffects:
-      - "RESISTANCE;0"
-
-  god:
-    enabled: true
-    name: "<dark_purple><bold>God Totem</bold></dark_purple>"
-    lore:
-      - "<dark_purple>Extremely powerful. OP. Use with caution.</dark_purple>"
-    material: "TOTEM_OF_UNDYING"
-    amount: 1
-    permission: "qtotems.god" # intended to be restricted: requires code to enforce
-    popEffects:
-      - "STRENGTH;5;400"
-      - "REGENERATION;5;200"
-      - "ABSORPTION;5;200"
-      - "RESISTANCE;5;400"
-      - "SPEED;3;400"
-    equipEffects:
-      - "STRENGTH;2"
-      - "RESISTANCE;1"
+      - "resistance;0"
+      - "dolphins_grace;0"
 
 messages:
   onlyPlayers: "<red>Only players can use this command!"
