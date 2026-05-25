@@ -13,7 +13,6 @@ import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,11 +53,11 @@ public class QTotem {
         return totemItem.clone();
     }
 
-    public @Nullable List<PotionEffect> getEquipEffects() {
+    public List<PotionEffect> getEquipEffects() {
         return List.copyOf(equipEffects);
     }
 
-    public @Nullable List<PotionEffect> getPopEffects() {
+    public List<PotionEffect> getPopEffects() {
         return List.copyOf(popEffects);
     }
 
@@ -79,7 +78,7 @@ public class QTotem {
             QTotems.getInstance().getLogger().warning("Invalid pop effect name: " + potionEffectName + " for totem: " + this.getName());
             return this;
         }
-        equipEffects.add(new PotionEffect(type, Integer.MAX_VALUE, level, false, false, true));
+        equipEffects.add(new PotionEffect(type, 105, level, false, false, true));
         return this;
     }
 

@@ -1,11 +1,10 @@
 package dev.parrotstudios.qtotems.listener;
 
+import dev.parrotstudios.qtotems.QTotems;
 import dev.parrotstudios.qtotems.totem.QTotemRegistry;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityPotionEffectEvent;
 import org.bukkit.event.entity.EntityResurrectEvent;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -25,11 +24,12 @@ public class EventListener implements Listener {
 
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event) {
-
         if (event.getSlot() != 40) return;
-        if (event.getClick() == ClickType.SWAP_OFFHAND) return;
-        ItemStack stack = event.getCursor();
-        QTotemRegistry.handleEquip((Player) event.getWhoClicked(), stack);
+        if (event.getClick() == ClickType.SWAP_OFFHAND || event.getClick() == ClickType.MIDDLE) return;
+        if (event.isCancelled()) return;
+        Player player = (Player) event.getWhoClicked();
+        QTotems.getInstance().getServer().getScheduler().runTaskLater(QTotems.getInstance(), () ->
+                QTotemRegistry.handleEquip(player, player.getInventory().getItemInOffHand()), 1L);
     }
 
     @EventHandler
@@ -55,15 +55,6 @@ public class EventListener implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         QTotemRegistry.handleJoin(event.getPlayer());
-    }
-
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
-    public void onEffectRemove(EntityPotionEffectEvent event) {
-        if (!(event.getEntity() instanceof Player player)) return;
-        if (event.getAction() != EntityPotionEffectEvent.Action.CLEARED && event.getAction() != EntityPotionEffectEvent.Action.REMOVED)
-            return;
-        QTotemRegistry.handleEffectChange(player);
-
     }
 
 }
