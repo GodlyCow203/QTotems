@@ -129,7 +129,11 @@ public class QTotemRegistry {
         if(qTotem.isEmpty()) return;
         qTotem.get().provideEquipEffects(player);
         activePlayerEquips.put(player.getUniqueId(), qTotem.get());
-
+        List<String> effectNames = new ArrayList<>();
+        qTotem.get().getEquipEffects().forEach(effect -> effectNames.add(effect.getType().getKey().getKey()));
+        if (!effectNames.isEmpty()) {
+            player.getPersistentDataContainer().set(getActiveEffectsKey(), PersistentDataType.STRING, String.join(";", effectNames));
+        }
     }
 
     public static void handleEffectChange(Player player){
@@ -187,7 +191,7 @@ public class QTotemRegistry {
         getActivePlayerEquips().forEach((uuid, qTotem) -> {
             Player player = QTotems.getInstance().getServer().getPlayer(uuid);
             if(player != null){
-                qTotem.removeEquipEffects(player);
+                clearPastEffects(player);
             }
         });
         activePlayerEquips.clear();
