@@ -24,6 +24,8 @@ public final class QTotems extends JavaPlugin {
         getServer().getOnlinePlayers().forEach(player ->
                 QTotemRegistry.handleEquip(player, player.getInventory().getItemInOffHand()));
 
+        getServer().getScheduler().runTaskTimer(this, QTotemRegistry::checkActiveEquips, 0L, 100L);
+
         getLogger().info("Plugin has been enabled.");
     }
 
