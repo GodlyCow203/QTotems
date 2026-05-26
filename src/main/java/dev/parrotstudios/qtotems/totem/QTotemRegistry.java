@@ -41,7 +41,8 @@ public class QTotemRegistry {
 
     public static boolean isQTotem(ItemStack stack) {
         if (stack == null || !stack.hasItemMeta()) return false;
-        PersistentDataContainer pdc = stack.getItemMeta().getPersistentDataContainer();
+        if(stack.getType().isAir()) return false;
+        PersistentDataContainerView pdc = stack.getPersistentDataContainer();
         return qTotems.stream().map(QTotem::getKey).anyMatch(pdc::has);
     }
 
