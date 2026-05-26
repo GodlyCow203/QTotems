@@ -38,7 +38,6 @@ public class QTotemRegistry {
     }
 
 
-
     public static void clearPastEffects(Player player) {
         QTotem active = activePlayerEquips.remove(player.getUniqueId());
         if (active != null) {
@@ -78,26 +77,11 @@ public class QTotemRegistry {
 
     public static void handleLeave(Player player) {
         clearPastEffects(player);
-        activePlayerEquips.remove(player.getUniqueId());
     }
 
     public static void handleJoin(Player player) {
-        clearPastEffects(player);
-        ItemStack stack = player.getInventory().getItemInOffHand();
-        if (!isQTotem(stack)) {
-            return;
-        }
-        Optional<QTotem> qTotem = qTotems.stream().filter(qTotem1 -> {
-            PersistentDataContainerView pdc = stack.getPersistentDataContainer();
-            return pdc.has(qTotem1.getKey());
-        }).findFirst();
-        if (qTotem.isEmpty()) return;
-        qTotem.get().provideEquipEffects(player);
-        activePlayerEquips.put(player.getUniqueId(), qTotem.get());
+        handleEquip(player, player.getInventory().getItemInOffHand());
     }
-
-
-
 
     public static void checkActiveEquips() {
         List<UUID> activeUuids = new ArrayList<>(activePlayerEquips.keySet());
@@ -115,8 +99,10 @@ public class QTotemRegistry {
                 }).findFirst();
 
                 if (qTotem.isPresent()) {
-                    QTotem currentTotem = qTotem.get();
-                    if (active == null || !active.getKey().equals(currentTotem.getKey())) {
+                    QTotem totem = qTotem.get();
+                    if (totem == active) {
+                        totem.provideEquipEffects(player);
+                    } else {
                         handleEquip(player, stack);
                     }
                 } else {
@@ -129,7 +115,7 @@ public class QTotemRegistry {
     }
 
     public static QTotem getTotem(String totemName) {
-        return getQTotems().stream().filter(qTotem -> qTotem.getName().equals(totemName)).findFirst().orElse(null);
+        return getQTotems().stream().filter(qTotem -> qTotem.getName().equalsIgnoreCase(totemName)).findFirst().orElse(null);
     }
 
     public static void populate() {
@@ -163,7 +149,7 @@ public class QTotemRegistry {
 
     public static void handleDisable() {
         qTotems.clear();
-        getActivePlayerEquips().forEach((uuid, qTotem) -> {
+        getActivePlayerEquips().forEach((uuid, _) -> {
             Player player = QTotems.getInstance().getServer().getPlayer(uuid);
             if (player != null) {
                 clearPastEffects(player);
@@ -181,6 +167,5 @@ public class QTotemRegistry {
                 handleEquip(player, player.getInventory().getItemInOffHand());
             }
         });
-
     }
 }

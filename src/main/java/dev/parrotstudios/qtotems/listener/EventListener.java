@@ -44,7 +44,6 @@ public class EventListener implements Listener {
     public void onSwap(PlayerSwapHandItemsEvent event) {
         ItemStack itemToOffhand = event.getOffHandItem();
         QTotemRegistry.handleEquip(event.getPlayer(), itemToOffhand);
-
     }
 
     @EventHandler

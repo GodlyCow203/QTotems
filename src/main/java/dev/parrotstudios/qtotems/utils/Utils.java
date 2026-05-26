@@ -96,12 +96,13 @@ public class Utils {
 
     public static Component textWithPrefix(String message) {
         if (message == null || message.isEmpty()) return Component.empty();
+        String prefix = ConfigManager.getString("prefix", "");
+        String fullMessage = prefix + message;
         try {
-            String prefix = ConfigManager.getString("prefix","");
-            return MiniMessage.miniMessage().deserialize(MESSAGE_CACHE.get(message, ()
-                    -> convertLegacyToMiniMessage(prefix + message)));
+            return MiniMessage.miniMessage().deserialize(MESSAGE_CACHE.get(fullMessage, ()
+                    -> convertLegacyToMiniMessage(fullMessage)));
         } catch (Exception e) {
-            return MiniMessage.miniMessage().deserialize(convertLegacyToMiniMessage(message));
+            return MiniMessage.miniMessage().deserialize(convertLegacyToMiniMessage(fullMessage));
         }
     }
 }

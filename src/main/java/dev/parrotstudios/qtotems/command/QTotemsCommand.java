@@ -134,7 +134,7 @@ public class QTotemsCommand implements CommandExecutor, TabCompleter {
                     .toList();
         }
         if (args.length == 2) {
-            if (!QTotemRegistry.getTotemNames().contains(args[0].toLowerCase())) return List.of();
+            if (QTotemRegistry.getTotem(args[0]) == null) return List.of();
             return QTotems.getInstance().getServer().getOnlinePlayers().stream().map(Player::getName).filter(name -> name.toLowerCase().startsWith(args[1].toLowerCase())).toList();
         }
         return List.of();
