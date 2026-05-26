@@ -7,13 +7,20 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.scheduler.BukkitTask;
 
 import java.util.*;
 
 public class QTotemRegistry {
     private static final List<QTotem> qTotems = new ArrayList<>();
+    private static BukkitTask TASK;
 
     private static final HashMap<UUID, QTotem> activePlayerEquips = new HashMap<>();
+
+    public static void startUp(){
+        TASK = QTotems.getInstance().getServer().getScheduler().runTaskTimer(QTotems.getInstance(), QTotemRegistry::checkActiveEquips, 0L, 100L);
+
+    }
 
     public static List<QTotem> getQTotems() {
         return new ArrayList<>(qTotems);
@@ -22,6 +29,7 @@ public class QTotemRegistry {
     public static void add(QTotem qTotem) {
         qTotems.add(qTotem);
     }
+
 
     public static List<String> getTotemNames() {
         return qTotems.stream().map(QTotem::getName).toList();
@@ -148,6 +156,7 @@ public class QTotemRegistry {
     }
 
     public static void handleDisable() {
+        if(TASK != null) TASK.cancel();
         qTotems.clear();
         getActivePlayerEquips().forEach((uuid, _) -> {
             Player player = QTotems.getInstance().getServer().getPlayer(uuid);
