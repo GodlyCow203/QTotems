@@ -56,8 +56,8 @@ The plugin configuration is located at [src/main/resources/config.yml](file:///h
     *   `enabled`: If `false`, the totem is ignored and not registered.
     *   `name`: The display name of the item.
     *   `lore`: List of lines shown on the item tooltip.
-    *   `popEffects`: Format `"effect_name;amplifier;duration_in_ticks"`.
-    *   `equipEffects`: Format `"effect_name;amplifier"`.
+    *   `popEffects`: Format `"effect_name;amplifier;duration_in_ticks;ambient;particles;icon"`.
+    *   `equipEffects`: Format `"effect_name;amplifier;ambient;particles;icon"`.
 3.  **`messages`**: Customizable translation messages for plugin feedback.
 
 ### Format Details
