@@ -60,9 +60,16 @@ public class QTotemRegistry {
     }
 
     public static void handleEquip(Player player, ItemStack stack) {
-        clearPastEffects(player);
+
         QTotem qTotem = getQTotem(stack);
-        if (qTotem == null) return;
+        if (qTotem == null){
+            clearPastEffects(player);
+            return;
+        }
+        QTotem active = activePlayerEquips.get(player.getUniqueId());
+        if (active != qTotem) {
+            clearPastEffects(player);
+        }
         qTotem.provideEquipEffects(player);
         activePlayerEquips.put(player.getUniqueId(), qTotem);
     }
@@ -84,7 +91,7 @@ public class QTotemRegistry {
     }
 
     public static void checkActiveEquips() {
-        activePlayerEquips.keySet().forEach(uuid -> {
+        new ArrayList<>(activePlayerEquips.keySet()).forEach(uuid -> {
             Player player = org.bukkit.Bukkit.getPlayer(uuid);
             if (player == null) return;
             ItemStack stack = player.getInventory().getItemInOffHand();
@@ -148,13 +155,10 @@ public class QTotemRegistry {
     public static void handleDisable() {
         if (TASK != null) TASK.cancel();
         qTotems.clear();
-        getActivePlayerEquips().forEach((uuid, _) -> {
+        new ArrayList<>(activePlayerEquips.keySet()).forEach(uuid -> {
             Player player = QTotems.getInstance().getServer().getPlayer(uuid);
-            if (player != null) {
-                clearPastEffects(player);
-            }
+            if (player != null) clearPastEffects(player);
         });
-        activePlayerEquips.clear();
     }
 
     public static void reload() {

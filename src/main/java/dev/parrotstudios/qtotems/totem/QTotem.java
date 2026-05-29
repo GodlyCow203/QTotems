@@ -78,7 +78,7 @@ public class QTotem {
             QTotems.getInstance().getLogger().warning("Invalid pop effect name: " + potionEffectName + " for totem: " + this.getName());
             return this;
         }
-        equipEffects.add(new PotionEffect(type, 121, level, ambient, particles, icon));
+        equipEffects.add(new PotionEffect(type, 102, level, ambient, particles, icon));
         return this;
     }
 
