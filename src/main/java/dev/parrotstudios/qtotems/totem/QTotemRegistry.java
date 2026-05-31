@@ -81,7 +81,7 @@ public class QTotemRegistry {
     public static void handlePop(Player player, ItemStack stack) {
         QTotem qTotem = getQTotem(stack);
         if (qTotem == null) return;
-        QTotems.getInstance().getServer().getScheduler().runTaskLater(QTotems.getInstance(), () ->
+        QSchedulerManager.runLater( () ->
                 qTotem.providePopEffects(player), 1L);
         activePlayerEquips.remove(player.getUniqueId(), qTotem);
     }

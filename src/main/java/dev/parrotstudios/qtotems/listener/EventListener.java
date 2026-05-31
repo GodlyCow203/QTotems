@@ -2,6 +2,7 @@ package dev.parrotstudios.qtotems.listener;
 
 import dev.parrotstudios.qtotems.QTotems;
 import dev.parrotstudios.qtotems.totem.QTotemRegistry;
+import dev.parrotstudios.qtotems.utils.QSchedulerManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -28,8 +29,8 @@ public class EventListener implements Listener {
         if (event.getClick() == ClickType.SWAP_OFFHAND || event.getClick() == ClickType.MIDDLE) return;
         if (event.isCancelled()) return;
         Player player = (Player) event.getWhoClicked();
-        QTotems.getInstance().getServer().getScheduler().runTaskLater(QTotems.getInstance(), () ->
-                QTotemRegistry.handleEquip(player, player.getInventory().getItemInOffHand()), 1L);
+        QSchedulerManager.runLater(() ->
+                QTotemRegistry.handleEquip(player, player.getInventory().getItemInOffHand()),1L);
     }
 
     @EventHandler
