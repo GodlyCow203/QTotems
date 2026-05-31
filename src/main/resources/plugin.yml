@@ -1,12 +1,12 @@
 name: QTotems
 description: $description
 prefix: QTotems
-version: '1.2.0'
+version: '1.3.1'
 
 main: dev.parrotstudios.qtotems.QTotems
 api-version: '1.21.11'
 load: POSTWORLD
-
+folia-supported: true
 authors: [ Qssaf ]
 
 commands:

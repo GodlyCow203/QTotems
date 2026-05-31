@@ -1,7 +1,7 @@
 package dev.parrotstudios.qtotems.totem;
 
 import dev.parrotstudios.qtotems.QTotems;
-import dev.parrotstudios.qtotems.utils.Utils;
+import dev.parrotstudios.qtotems.utils.TextUtils;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -62,12 +62,12 @@ public class QTotem {
     }
 
     public QTotem displayName(String name) {
-        totemMeta.displayName(Utils.text(name));
+        totemMeta.displayName(TextUtils.text(name));
         return this;
     }
 
     public QTotem lore(List<String> lore) {
-        List<Component> loreFormat = lore.stream().map(Utils::text).toList();
+        List<Component> loreFormat = lore.stream().map(TextUtils::text).toList();
         totemMeta.lore(loreFormat);
         return this;
     }

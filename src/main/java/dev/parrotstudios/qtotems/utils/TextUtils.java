@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 
-public class Utils {
+public class TextUtils {
     private static final Map<Character, String> LEGACY_TO_MINI = new HashMap<>();
     private static final Cache<String, String> MESSAGE_CACHE = CacheBuilder.newBuilder()
             .expireAfterWrite(15, TimeUnit.MINUTES)

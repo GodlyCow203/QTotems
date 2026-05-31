@@ -4,7 +4,7 @@ import dev.parrotstudios.qtotems.QTotems;
 import dev.parrotstudios.qtotems.config.ConfigManager;
 import dev.parrotstudios.qtotems.totem.QTotem;
 import dev.parrotstudios.qtotems.totem.QTotemRegistry;
-import dev.parrotstudios.qtotems.utils.Utils;
+import dev.parrotstudios.qtotems.utils.TextUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -52,76 +52,76 @@ public class QTotemsCommand implements CommandExecutor, TabCompleter {
             if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
                 ConfigManager.reloadConfig();
                 QTotemRegistry.reload();
-                sender.sendMessage(Utils.textWithPrefix(msgReloaded()));
+                sender.sendMessage(TextUtils.textWithPrefix(msgReloaded()));
                 return true;
             }
             if (args.length == 1) {
                 if (QTotemRegistry.getQTotem(args[0]) != null) {
-                    sender.sendMessage(Utils.textWithPrefix(msgOnlyPlayers()));
+                    sender.sendMessage(TextUtils.textWithPrefix(msgOnlyPlayers()));
                     return true;
                 }
-                sender.sendMessage(Utils.textWithPrefix(msgInvalidTotem()));
+                sender.sendMessage(TextUtils.textWithPrefix(msgInvalidTotem()));
                 return true;
             }
             if (args.length == 2) {
                 QTotem totem = QTotemRegistry.getQTotem(args[0]);
                 Player target = QTotems.getInstance().getServer().getPlayer(args[1]);
                 if (totem == null) {
-                    sender.sendMessage(Utils.textWithPrefix(msgInvalidTotem()));
+                    sender.sendMessage(TextUtils.textWithPrefix(msgInvalidTotem()));
                     return true;
                 }
                 if (target == null) {
-                    sender.sendMessage(Utils.textWithPrefix(msgInvalidTarget()));
+                    sender.sendMessage(TextUtils.textWithPrefix(msgInvalidTarget()));
                     return true;
                 }
                 target.getInventory().addItem(totem.getTotemItem());
-                target.sendMessage(Utils.textWithPrefix(msgGaveSelf()));
-                sender.sendMessage(Utils.textWithPrefix(msgGaveTarget(target.getName())));
+                target.sendMessage(TextUtils.textWithPrefix(msgGaveSelf()));
+                sender.sendMessage(TextUtils.textWithPrefix(msgGaveTarget(target.getName())));
                 return true;
 
             }
-            sender.sendMessage(Utils.textWithPrefix(msgUsage()));
+            sender.sendMessage(TextUtils.textWithPrefix(msgUsage()));
             return true;
         }
         if (args.length == 0 || args.length > 2) {
-            player.sendMessage(Utils.textWithPrefix(msgUsage()));
+            player.sendMessage(TextUtils.textWithPrefix(msgUsage()));
             return true;
         }
         if (args.length == 1) {
             if (args[0].equalsIgnoreCase("reload")) {
                 ConfigManager.reloadConfig();
                 QTotemRegistry.reload();
-                player.sendMessage(Utils.textWithPrefix(msgReloaded()));
+                player.sendMessage(TextUtils.textWithPrefix(msgReloaded()));
                 return true;
             }
             QTotem totem = QTotemRegistry.getQTotem(args[0]);
             if (totem == null) {
-                player.sendMessage(Utils.textWithPrefix(msgInvalidTotem()));
+                player.sendMessage(TextUtils.textWithPrefix(msgInvalidTotem()));
                 return true;
             }
             player.getInventory().addItem(totem.getTotemItem());
-            player.sendMessage(Utils.textWithPrefix(msgGaveSelf()));
+            player.sendMessage(TextUtils.textWithPrefix(msgGaveSelf()));
             return true;
         }
         QTotem totem = QTotemRegistry.getQTotem(args[0]);
         Player target = QTotems.getInstance().getServer().getPlayer(args[1]);
         if (totem == null) {
-            player.sendMessage(Utils.textWithPrefix(msgInvalidTotem()));
+            player.sendMessage(TextUtils.textWithPrefix(msgInvalidTotem()));
             return true;
         }
         if (target == null) {
-            player.sendMessage(Utils.textWithPrefix(msgInvalidTarget()));
+            player.sendMessage(TextUtils.textWithPrefix(msgInvalidTarget()));
             return true;
         }
         if (target == player) {
             player.getInventory().addItem(totem.getTotemItem());
-            player.sendMessage(Utils.textWithPrefix(msgGaveSelf()));
+            player.sendMessage(TextUtils.textWithPrefix(msgGaveSelf()));
             return true;
         }
 
         target.getInventory().addItem(totem.getTotemItem());
-        target.sendMessage(Utils.textWithPrefix(msgGaveSelf()));
-        player.sendMessage(Utils.textWithPrefix(msgGaveTarget(target.getName())));
+        target.sendMessage(TextUtils.textWithPrefix(msgGaveSelf()));
+        player.sendMessage(TextUtils.textWithPrefix(msgGaveTarget(target.getName())));
         return true;
     }
 

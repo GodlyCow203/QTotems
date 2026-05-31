@@ -2,27 +2,30 @@ package dev.parrotstudios.qtotems.totem;
 
 import dev.parrotstudios.qtotems.QTotems;
 import dev.parrotstudios.qtotems.config.ConfigManager;
+import dev.parrotstudios.qtotems.utils.QSchedulerManager;
+import dev.parrotstudios.qtotems.utils.taskwrappers.QTask;
 import io.papermc.paper.persistence.PersistentDataContainerView;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.scheduler.BukkitTask;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.Unmodifiable;
+import org.jspecify.annotations.NonNull;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 @SuppressWarnings("unused")
 public class QTotemRegistry {
     private static final List<QTotem> qTotems = new ArrayList<>();
-    private static final HashMap<UUID, QTotem> activePlayerEquips = new HashMap<>();
-    private static BukkitTask TASK;
+    private static final ConcurrentHashMap<UUID, QTotem> activePlayerEquips = new ConcurrentHashMap<>();
+    private static QTask TASK;
 
     public static void startUp() {
-        TASK = QTotems.getInstance().
-                getServer().
-                getScheduler().
-                runTaskTimer(QTotems.getInstance(), QTotemRegistry::checkActiveEquips, 100L, 100L);
+        TASK = QSchedulerManager.runTimer(QTotemRegistry::checkActiveEquips, 100L, 100L);
     }
 
-    public static List<QTotem> getQTotems() {
+    @Contract(value = " -> new", pure = true)
+    public static @NonNull List<QTotem> getQTotems() {
         return new ArrayList<>(qTotems);
     }
 
@@ -30,11 +33,12 @@ public class QTotemRegistry {
         qTotems.add(qTotem);
     }
 
-    public static List<String> getTotemNames() {
+    public static @NonNull @Unmodifiable List<String> getTotemNames() {
         return qTotems.stream().map(QTotem::getName).toList();
     }
 
-    public static Map<UUID, QTotem> getActivePlayerEquips() {
+    @Contract(pure = true)
+    public static @NonNull @Unmodifiable Map<UUID, QTotem> getActivePlayerEquips() {
         return Map.copyOf(activePlayerEquips);
     }
 
@@ -52,7 +56,7 @@ public class QTotemRegistry {
         }).findFirst().orElse(null);
     }
 
-    public static void clearPastEffects(Player player) {
+    public static void clearPastEffects(@NonNull Player player) {
         QTotem active = activePlayerEquips.remove(player.getUniqueId());
         if (active != null) {
             active.removeEquipEffects(player);
