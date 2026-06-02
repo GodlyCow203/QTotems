@@ -50,10 +50,9 @@ public class QTotemRegistry {
 
     public static QTotem getQTotem(ItemStack stack) {
         if (stack == null || stack.getType().isAir()) return null;
-        return qTotems.stream().filter(qTotem -> {
-            PersistentDataContainerView pdc = stack.getPersistentDataContainer();
-            return pdc.has(qTotem.getKey());
-        }).findFirst().orElse(null);
+        PersistentDataContainerView pdc = stack.getPersistentDataContainer();
+        if(pdc.isEmpty()) return null;
+        return qTotems.stream().filter(qTotem -> pdc.has(qTotem.getKey())).findFirst().orElse(null);
     }
 
     public static void clearPastEffects(@NonNull Player player) {
