@@ -98,7 +98,7 @@ public class QTotemRegistry {
     }
 
     public static void checkActiveEquips() {
-        new HashSet<>(activePlayerEquips.keySet()).forEach(uuid -> {
+        new ArrayList<>(activePlayerEquips.keySet()).forEach(uuid -> {
             Player player = QTotems.getInstance().getServer().getPlayer(uuid);
             if (player == null) return;
             ItemStack stack = player.getInventory().getItemInOffHand();
