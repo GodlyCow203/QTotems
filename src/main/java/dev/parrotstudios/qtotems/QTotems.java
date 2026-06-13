@@ -6,6 +6,7 @@ import dev.parrotstudios.qtotems.listener.EventListener;
 import dev.parrotstudios.qtotems.totem.QTotemRegistry;
 import dev.parrotstudios.qtotems.utils.scheduler.QSchedulerManager;
 import lombok.Getter;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Objects;
@@ -20,6 +21,8 @@ public final class QTotems extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        int pluginId = 31976;
+        Metrics metrics = new Metrics(this, pluginId);
         instance = this;
         String schedulersUsed = QSchedulerManager.isFolia() ? "Using Folia Schedulers" : "Using Bukkit Schedulers";
         getLogger().info(schedulersUsed);

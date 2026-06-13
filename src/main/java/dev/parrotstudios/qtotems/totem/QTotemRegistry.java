@@ -131,10 +131,10 @@ public class QTotemRegistry {
                     return;
                 }
                 QTotem totem = QTotem.create(qTotem)
-                        .displayName(section.getString("name"))
-                        .lore(section.getStringList("lore"));
-                List<String> popEffects = section.getStringList("popEffects");
-                List<String> equipEffects = section.getStringList("equipEffects");
+                        .displayName(section.getString(qTotem + ".name"))
+                        .lore(section.getStringList(qTotem + ".lore"));
+                List<String> popEffects = section.getStringList(qTotem + ".popEffects");
+                List<String> equipEffects = section.getStringList( qTotem + ".equipEffects");
                 popEffects.forEach(effect -> {
                     String[] split = effect.split(";");
                     totem.addPopEffect(
